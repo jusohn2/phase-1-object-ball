@@ -115,7 +115,6 @@ const gameObject = () => {
   };
 };
 
-
 function homeTeam() {
   return gameObject().home;
 }
@@ -124,13 +123,41 @@ function awayTeam() {
   return gameObject().away;
 }
 
+const numPointsScored = (name) => {
+  const gameData = gameObject();
+  for (element in gameData.home.players) {
+    if (element === name) {
+      return gameData.home.players[element].points;
+    }
+  }
+  for (element in gameData.away.players) {
+    if (element === name) {
+      return gameData.away.players[element].points;
+    }
+  }
+};
 
-function players() {
-  return Object.assign({}, homeTeam().players, awayTeam().players);
-}
+const shoeSize = (name) => {
+  const gameData = gameObject();
+  for (element in gameData.home.players) {
+    if (element === name) {
+      return gameData.home.players[element].shoes;
+    }
+  }
+  for (element in gameData.away.players) {
+    if (element === name) {
+      return gameData.away.players[element].shoes;
+    }
+  }
+};
 
-// Built a function and it's going to take in an argument of a player's name and returns the number of points scored for that player
-
-function numPointsScored(playersInput){
-    return players().points
-}
+const teamColors = (teamName) => {
+  const gameData = gameObject();
+  if (gameData.home.teamName === teamName) {
+    return gameData.home.colors;
+  }
+  if (gameData.away.teamName === teamName) {
+    return gameData.away.colors;
+  }
+};
+console.log(teamColors("Charlotte Hornets"))
